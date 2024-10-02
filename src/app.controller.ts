@@ -18,9 +18,7 @@ export class AppController {
 
   @Get('termekek')
   @Render('termekek')
-  getTermekek(@Res() response: Response){
-    // response.redirect('/personalForm');
-  }
+  getTermekek(@Res() response: Response){ }
 
   @Get('personalForm')
   @Render('PersonalForm')
