@@ -1,0 +1,35 @@
+figure {
+    border: 1px solid black;
+    border-radius: 2rem;
+    width: fit-content;
+}
+
+figure img {
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+figcaption {
+    text-align: center;
+    background-color: rgba(147, 147, 147, 0.45);
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+figcaption a {
+    margin: 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: rgb(26, 132, 26);
+    color: white;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+figcaption a:hover {
+    background-color: rgb(82, 150, 82);
+}
