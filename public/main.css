@@ -16,7 +16,7 @@ figcaption {
     border-bottom-right-radius: 2rem;
 }
 
-figcaption a {
+figcaption input {
     margin: 1rem;
     border-radius: 8px;
     border: 1px solid transparent;
@@ -30,6 +30,14 @@ figcaption a {
     transition: all 0.25s;
 }
 
-figcaption a:hover {
+figcaption input:hover {
     background-color: rgb(82, 150, 82);
+}
+
+.box{
+    display: inline-flex;
+}
+
+.box figure{
+    width: 33%;
 }
