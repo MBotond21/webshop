@@ -39,7 +39,9 @@ export class AppController {
     if(!personalDto.name || !personalDto.billingAdress || !personalDto.adress || !personalDto.card || !personalDto.expDate || !personalDto.secuCode){
       errors.push("Minden mezőt (a kupon kód kivételével) kötelező kitölteni!");
     }
-    if(personalDto.cupon && /^$/)
+    if(personalDto.cupon && !/^[A-Z]{2}-\d{4}$/.test(personalDto.cupon)){
+      errors.push("Hibás kupon kód, helyes formátum: BB-SSSS, ahol a B nagybetű, az S szám, pl. PT-1255")
+    }
     if(!/^\d{4}-\d{4}-\d{4}-\d{4}$/.test(personalDto.card)){
       errors.push("Kártyszám helyes formátuma: XXXX-XXXX-XXXX-XXXX")
     }
