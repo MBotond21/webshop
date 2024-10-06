@@ -8,21 +8,25 @@
 <body>
     <form method="post">
         <label for="name">Név:</label>
-        <input type="text" name="name" placeholder="Név"><br>
+        <input type="text" name="name" placeholder="Név" value="<%= data.name %>"><br>
         <label for="billingAdress">Számlázási cím:</label>
-        <input type="text" name="billingAdress" placeholder="Számlázási cím"><br>
+        <input type="text" name="billingAdress" placeholder="Számlázási cím" value="<%= data.billingAdress %>"><br>
         <label for="adress">Szállítási cím:</label>
-        <input type="text" name="adress" placeholder="Szállítási cím"><br>
+        <input type="text" name="adress" placeholder="Szállítási cím" value="<%= data.adress %>"><br>
         <label for="cupon">Kupon kód (opcionális)</label>
-        <input type="text" name="cupon" placeholder="BB-SSSS"><br>
+        <input type="text" name="cupon" placeholder="BB-SSSS" value="<%= data.cupon %>"><br>
         <label for="card">Bankkrátya szám:</label>
-        <input type="text" name="card" placeholder="XXXX-XXXX-XXXX-XXXX"><br>
+        <input type="text" name="card" placeholder="XXXX-XXXX-XXXX-XXXX" value="<%= data.card %>"><br>
         <label for="expDate">Lejárati dátum:</label>
-        <input type="text" name="expDate" placeholder="HH/ÉÉ"><br>
+        <input type="text" name="expDate" placeholder="HH/ÉÉ" value="<%= data.expDate %>"><br>
         <label for="secuCode">Biztonsági kód:</label>
-        <input type="text" name="secuCode" placeholder="XXX"><br>
+        <input type="text" name="secuCode" placeholder="XXX" value="<%= data.secuCode %>"><br>
 
         <input type="submit" value="Vásárlás">
+
+        <% for (let e of errors) { %>
+            <p style="color: red;"><%= e %></p>
+        <% } %>
     </form>
 </body>
 </html>

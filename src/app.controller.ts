@@ -6,7 +6,9 @@ import { Response } from 'express';
 import { error } from 'console';
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  #payment: Personal[] = [];
+
+  constructor(private readonly appService: AppService) { }
 
   @Get()
   @Render('index')
@@ -18,14 +20,56 @@ export class AppController {
 
   @Get('termekek')
   @Render('termekek')
-  getTermekek(@Res() response: Response){ }
+  getTermekek(@Res() response: Response) { }
 
   @Get('personalForm')
   @Render('PersonalForm')
-  getPersonalForm(){ }
+  getPersonalForm() { 
+    return {
+      data: {},
+      errors: []
+    }
+  }
 
   @Post('personalForm')
-  postPersonals(@Body() personalDto: PersonalDto, @Res() response: Response){
+  postPersonals(@Body() personalDto: PersonalDto, @Res() response: Response) {
 
+    let errors = []
+
+    if(!personalDto.name || !personalDto.billingAdress || !personalDto.adress || !personalDto.card || !personalDto.expDate || !personalDto.secuCode){
+      errors.push("Minden mezőt (a kupon kód kivételével) kötelező kitölteni!");
+    }
+    if(personalDto.cupon && /^$/)
+    if(!/^\d{4}-\d{4}-\d{4}-\d{4}$/.test(personalDto.card)){
+      errors.push("Kártyszám helyes formátuma: XXXX-XXXX-XXXX-XXXX")
+    }
+
+    if(errors.length > 0){
+      response.render('personalForm', {
+        data: personalDto,
+        errors
+      })
+      return;
+    }
+
+    const newPersonal = {
+      name: personalDto.name,
+      billingAdress: personalDto.billingAdress,
+      adress: personalDto.adress,
+      cupon: personalDto.cupon,
+      card: personalDto.card,
+      expDate: personalDto.expDate,
+      secuCode: personalDto.secuCode
+    }
+
+    this.#payment.push(newPersonal);
+    console.log(this.#payment);
+
+    response.redirect('/paymentSuccess');
+  }
+
+  @Get('paymentSuccess')
+  getPaymentSuccess() {
+    return "Sikeres fizetés!"
   }
 }

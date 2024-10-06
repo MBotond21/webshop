@@ -3,9 +3,7 @@ export class PersonalDto {
     billingAdress: string;
     adress: string;
     cupon: string;
-    payment: {
-        card: string,
-        expDate: string;
-        secuCode: string
-    }
+    card: string;
+    expDate: string;
+    secuCode: string;
 }
