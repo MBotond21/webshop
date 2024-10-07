@@ -4,6 +4,7 @@ import { Personal } from './Personal';
 import { PersonalDto } from './PersonalDto.dto';
 import { Response } from 'express';
 import { error } from 'console';
+
 @Controller()
 export class AppController {
   #payment: Personal[] = [];
@@ -44,6 +45,12 @@ export class AppController {
     }
     if(!/^\d{4}-\d{4}-\d{4}-\d{4}$/.test(personalDto.card)){
       errors.push("Kártyszám helyes formátuma: XXXX-XXXX-XXXX-XXXX")
+    }
+    if(!/^\d{3}$/.test(personalDto.secuCode)){
+      errors.push("A biztonsági kód helyes formátuma: XXX");
+    }
+    if(!/^(0[1-9]|1[0-9])\/[0-9]{2}$/.test(personalDto.expDate)){
+      errors.push("A lejárati dátum helyes formátuma: HH/ÉÉ");
     }
 
     if(errors.length > 0){
