@@ -52,6 +52,9 @@ export class AppController {
     if(!/^(0[1-9]|1[0-9])\/[0-9]{2}$/.test(personalDto.expDate)){
       errors.push("A lejárati dátum helyes formátuma: HH/ÉÉ");
     }
+    else if(parseInt(personalDto.expDate.substring(3, 5), 10) < 24){
+      errors.push("A kártya lejárt");
+    }
 
     if(errors.length > 0){
       response.render('personalForm', {
